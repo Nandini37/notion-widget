@@ -67,13 +67,20 @@ class SettingsWindowController: NSWindowController, NSTableViewDataSource, NSTab
         if let rawList = UserDefaults.standard.array(forKey: kSavedPagesListKey) as? [[String: String]], !rawList.isEmpty {
             savedPages = rawList.compactMap { NotionPageItem(dictionary: $0) }
         } else {
-            // Seed with clean default page
-            savedPages = [
-                NotionPageItem(
-                    name: "Notion Workspace",
-                    url: "https://www.notion.so"
-                )
-            ]
+            // Check if local git-ignored configuration exists
+            if let configURL = Bundle.main.url(forResource: "config.local", withExtension: "json"),
+               let data = try? Data(contentsOf: configURL),
+               let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+               let localList = json["savedPages"] as? [[String: String]], !localList.isEmpty {
+                savedPages = localList.compactMap { NotionPageItem(dictionary: $0) }
+            } else {
+                savedPages = [
+                    NotionPageItem(
+                        name: "Notion Workspace",
+                        url: "https://www.notion.so"
+                    )
+                ]
+            }
             savePagesList()
         }
     }

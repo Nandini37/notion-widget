@@ -23,6 +23,11 @@ cp AppIcon.icns "${RESOURCES_DIR}/AppIcon.icns"
 cp MenuIcon.png "${RESOURCES_DIR}/MenuIcon.png"
 cp MenuIcon@2x.png "${RESOURCES_DIR}/MenuIcon@2x.png"
 
+# Copy local user configuration if present (git-ignored)
+if [ -f "config.local.json" ]; then
+    cp config.local.json "${RESOURCES_DIR}/config.local.json"
+fi
+
 # Hardened Runtime Code Signing
 codesign -s - --options runtime --force --deep "${MACOS_DIR}/NotionWidget"
 codesign -s - --options runtime --force --deep "${APP_BUNDLE}"

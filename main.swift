@@ -17,7 +17,17 @@ func isAllowedSecureHost(_ host: String) -> Bool {
 }
 
 // MARK: - Constants & Defaults
-let defaultNotionURL = "https://www.notion.so"
+func getInitialDefaultURL() -> String {
+    if let url = Bundle.main.url(forResource: "config.local", withExtension: "json"),
+       let data = try? Data(contentsOf: url),
+       let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+       let defaultURL = json["defaultURL"] as? String, !defaultURL.isEmpty {
+        return defaultURL
+    }
+    return "https://www.notion.so"
+}
+
+let defaultNotionURL = getInitialDefaultURL()
 let kSavedURLKey = "NotionWidgetSavedURL"
 let kWindowModeKey = "NotionWidgetWindowMode"
 let kCleanModeKey = "NotionWidgetCleanMode"

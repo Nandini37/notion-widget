@@ -5,7 +5,10 @@
 *.swp
 .DS_Store
 
-# User data
+# User data & local configuration
+config.local.json
+*.local.json
+local_config.*
 xcuserdata/
 *.xcuserstate
 
