@@ -1,0 +1,14 @@
+# macOS build artifacts
+*.app
+*.dSYM
+*.o
+*.swp
+.DS_Store
+
+# User data
+xcuserdata/
+*.xcuserstate
+
+# Temporary files
+/tmp/
+*.iconset
