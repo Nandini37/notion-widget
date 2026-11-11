@@ -29,29 +29,22 @@ Designed to live gracefully on your desktop, with edge-to-edge database optimiza
 
 ---
 
-## 🚀 Building & Running
+## 🚀 Quick Setup & Installation
 
 ### Prerequisites
 - macOS 12.0 or later
 - Apple Swift compiler (`swiftc`, included with Xcode or Command Line Tools)
 
-### Build the App
-Clone the repository and run the build script:
+### One-Command Setup from Git
+Clone the repository and run `./install.sh`:
 
 ```bash
 git clone https://github.com/Nandini37/notion-widget.git
 cd notion-widget
-chmod +x build.sh
-./build.sh
+./install.sh
 ```
 
-### Install to Applications
-Copy the compiled application to your Applications folder:
-
-```bash
-cp -R "Notion Widget.app" ~/Applications/
-open ~/Applications/"Notion Widget.app"
-```
+The script compiles the application with Apple Hardened Runtime, installs it to `~/Applications/Notion Widget.app`, and launches it immediately.
 
 ---
 

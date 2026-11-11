@@ -15,3 +15,8 @@ xcuserdata/
 # Temporary files
 /tmp/
 *.iconset
+
+# Local agent scratch & temporary skills
+.skills/
+*.skill
+.gemini/
